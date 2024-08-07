@@ -3,15 +3,24 @@ package main
 import "fmt"
 
 func main() {
-	revenue := 0.0
-	expenses := 0.0
-	tax := 0.0
+	revenue, expenses, tax := askQuestions()
+
+	ebt := calculateEbt(revenue, expenses)
+	profit := calculateProfit(ebt, tax)
+
+	fmt.Println("Ratio:", ebt/profit)
+}
+
+func askQuestions() (revenue float64, expenses float64, tax float64) {
+	revenue = 0.0
+	expenses = 0.0
+	tax = 0.0
 
 	fmt.Println("Revenue: ")
 	_, err := fmt.Scan(&revenue)
 	if err != nil {
 		fmt.Print("error revenue value!")
-		return
+		return 0.0, 0.0, 0.0
 	}
 
 	fmt.Println("Expenses: ")
@@ -20,8 +29,13 @@ func main() {
 	fmt.Println("tax: ")
 	fmt.Scan(&tax)
 
-	ebt := revenue + expenses
-	profit := ebt * (1 - tax/100)
+	return revenue, expenses, tax
+}
 
-	fmt.Println("Ratio:", ebt/profit)
+func calculateEbt(revenue, expenses float64) float64 {
+	return revenue + expenses
+}
+
+func calculateProfit(ebt, tax float64) float64 {
+	return ebt * (1 - tax/100)
 }
