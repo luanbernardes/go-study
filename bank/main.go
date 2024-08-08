@@ -1,11 +1,32 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+	"strconv"
+)
+
+func readBalanceFromFile() int64 {
+	data, _ := os.ReadFile("balance.txt")
+	balanceText := string(data)
+	balance, _ := strconv.Atoi(balanceText)
+	fmt.Println("data is: ", balanceText)
+	return int64(balance)
+}
+
+func writeBalanceToFile(accountBalance int64) {
+	value := fmt.Sprint(accountBalance)
+
+	err := os.WriteFile("balance.txt", []byte(value), 0644)
+	if err != nil {
+		fmt.Println("error from write file")
+	}
+}
 
 func main() {
-	accountBalance := 100
-
 	for {
+		accountBalance := readBalanceFromFile()
+
 		choice := selectChoice()
 
 		switch choice {
@@ -16,8 +37,10 @@ func main() {
 			depositAmount := 0
 
 			fmt.Println("How much would you like to deposit? ")
+
 			fmt.Scan(&depositAmount)
-			accountBalance += depositAmount
+			sum := accountBalance + int64(depositAmount)
+			writeBalanceToFile(sum)
 			fmt.Println("success! your amount is:", accountBalance)
 
 		case 3:
@@ -25,7 +48,8 @@ func main() {
 
 			fmt.Println("How much would you like to withdraw?")
 			fmt.Scan(&withDrawAmount)
-			accountBalance -= withDrawAmount
+			sum := accountBalance - int64(withDrawAmount)
+			writeBalanceToFile(sum)
 			fmt.Println("success! your amount is:", accountBalance)
 
 		default:
@@ -36,7 +60,7 @@ func main() {
 	}
 }
 
-func selectChoice() (choice int) {
+func selectChoice() (choice int64) {
 	fmt.Println("Please select an option: ")
 	fmt.Println("1. check balance")
 	fmt.Println("2. deposit money")
