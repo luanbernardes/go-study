@@ -9,7 +9,11 @@ func selectChoice() (choice int64) {
 	fmt.Println("3. withdraw money")
 	fmt.Println("4. exit")
 
-	fmt.Scan(&choice)
+	_, err := fmt.Scan(&choice)
+
+	if err != nil {
+		panic("error in selectChoice: " + err.Error())
+	}
 
 	return choice
 }
