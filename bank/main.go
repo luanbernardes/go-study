@@ -10,7 +10,6 @@ func readBalanceFromFile() int64 {
 	data, _ := os.ReadFile("balance.txt")
 	balanceText := string(data)
 	balance, _ := strconv.Atoi(balanceText)
-	fmt.Println("data is: ", balanceText)
 	return int64(balance)
 }
 
@@ -41,6 +40,7 @@ func main() {
 			fmt.Scan(&depositAmount)
 			sum := accountBalance + int64(depositAmount)
 			writeBalanceToFile(sum)
+			accountBalance = readBalanceFromFile()
 			fmt.Println("success! your amount is:", accountBalance)
 
 		case 3:
@@ -50,6 +50,7 @@ func main() {
 			fmt.Scan(&withDrawAmount)
 			sum := accountBalance - int64(withDrawAmount)
 			writeBalanceToFile(sum)
+			accountBalance = readBalanceFromFile()
 			fmt.Println("success! your amount is:", accountBalance)
 
 		default:
@@ -58,16 +59,4 @@ func main() {
 			return
 		}
 	}
-}
-
-func selectChoice() (choice int64) {
-	fmt.Println("Please select an option: ")
-	fmt.Println("1. check balance")
-	fmt.Println("2. deposit money")
-	fmt.Println("3. withdraw money")
-	fmt.Println("4. exit")
-
-	fmt.Scan(&choice)
-
-	return choice
 }
