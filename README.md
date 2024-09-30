@@ -11,9 +11,12 @@ go study udemy (Maximilian)
 - to run : `cd bank && go run .`
 
 3) final project:
+ ![Screenshot from 2024-09-30 14-14-08](https://github.com/user-attachments/assets/851a83dc-95fa-43b6-ae13-4820512f1f1e)
+
 APIs:
 - get /events: get all events
 - get /events/<id>: get event
+
 - post /events: create event - auth required
 - put /events/<id>: update event - auth required - only owner can update
 - delete /events/<id>: delete event - auth required - only owner can delete
