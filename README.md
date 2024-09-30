@@ -9,3 +9,17 @@ go study udemy (Maximilian)
 - This is a simple bank application with a few features
 - persist data in a txt file
 - to run : `cd bank && go run .`
+
+3) final project:
+APIs:
+- get /events: get all events
+- get /events/<id>: get event
+- post /events: create event - auth required
+- put /events/<id>: update event - auth required - only owner can update
+- delete /events/<id>: delete event - auth required - only owner can delete
+
+- post /signup: create user
+
+- post /login: login user - JWT token
+- post /events/<id>/register: register user to event - auth required
+- delete /events/<id>/register: unregister user from event - auth required
