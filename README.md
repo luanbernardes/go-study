@@ -13,7 +13,16 @@ go study udemy (Maximilian)
 3) final project:
  ![Screenshot from 2024-09-30 14-14-08](https://github.com/user-attachments/assets/851a83dc-95fa-43b6-ae13-4820512f1f1e)
 
-APIs:
+### Anotations
+#### Documentation
+Testing documentations for APIs:
+- with postman: https://documenter.getpostman.com/view/1369025/2sAXxMhZyi
+  - Simple to export and share for every one, every engineer can see and use too 
+  - It is public
+  - Don't need hosting
+- with swagger: WIP
+
+### APIs that will have:
 - get /events: get all events
 - get /events/<id>: get event
 
