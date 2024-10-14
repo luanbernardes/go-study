@@ -1,12 +1,15 @@
 package main
 
 import (
+	"example.com/project/db"
 	"example.com/project/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
 func main() {
+	db.InitDB()
+
 	r := gin.Default()
 
 	r.GET("/events", getEvents)
