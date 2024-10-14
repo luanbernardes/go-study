@@ -15,7 +15,10 @@ func main() {
 	r.GET("/events", getEvents)
 	r.POST("/events", saveEvents)
 
-	r.Run(":8099")
+	err := r.Run(":8099")
+	if err != nil {
+		panic("Not could run in 8090 port" + err.Error())
+	}
 }
 
 func getEvents(c *gin.Context) {
