@@ -2,6 +2,7 @@ package main
 
 import (
 	"example.com/project/db"
+	"example.com/project/handlers"
 	"example.com/project/models"
 	"github.com/gin-gonic/gin"
 	"net/http"
@@ -22,7 +23,7 @@ func main() {
 }
 
 func getEvents(c *gin.Context) {
-	events := models.GetAllEvents()
+	events := handlers.GetAllEvents()
 	c.JSON(200, events)
 }
 
@@ -34,10 +35,8 @@ func saveEvents(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err})
 		return
 	}
-	event.ID = 1
-	event.UserId = 123
 
-	models.Event.Save(event)
+	handlers.SaveEvent(event)
 
 	c.JSON(http.StatusCreated, gin.H{"message": "Event created"})
 }

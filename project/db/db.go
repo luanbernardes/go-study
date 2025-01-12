@@ -2,6 +2,7 @@ package db
 
 import (
 	"database/sql"
+	"example.com/project/models"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -38,4 +39,33 @@ func createTables() {
 	if err != nil {
 		panic("Error creating events table" + err.Error())
 	}
+}
+
+func InsertEvent(e models.Event) error {
+	query := `
+		INSERT INTO events(name, description, location, dateTime, userId) 
+		VALUES(?, ?, ?, ?, ?)
+	`
+	stmt, err := DB.Prepare(query)
+	if err != nil {
+		return err
+	}
+	defer func(stmt *sql.Stmt) {
+		err = stmt.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(stmt)
+	result, err := stmt.Exec(e.Name, e.Description, e.Location, e.DateTime, e.UserId)
+	if err != nil {
+		return err
+	}
+
+	id, err := result.LastInsertId()
+	if err != nil {
+		return err
+	}
+	e.ID = id
+
+	return err
 }
