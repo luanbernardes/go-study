@@ -4,6 +4,7 @@ import (
 	"database/sql"
 	"example.com/project/models"
 	_ "github.com/mattn/go-sqlite3"
+	"time"
 )
 
 var DB *sql.DB
@@ -68,4 +69,29 @@ func InsertEvent(e models.Event) error {
 	e.ID = id
 
 	return err
+}
+
+func GetAllEvents() ([]models.Event, error) {
+	query := "SELECT * FROM events"
+	rows, err := DB.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var events []models.Event
+	for rows.Next() {
+		event := models.Event{}
+		var dateTimeStr string
+
+		err := rows.Scan(&event.ID, &event.Name, &event.Description, &event.Location, &dateTimeStr, &event.UserId)
+		if err != nil {
+			return nil, err
+		}
+		event.DateTime, err = time.Parse("2006-01-02 15:04:05", dateTimeStr)
+
+		events = append(events, event)
+	}
+
+	return events, nil
 }
