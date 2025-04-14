@@ -18,9 +18,9 @@ func main() {
 	r.GET("/events", getEvents)
 	r.POST("/events", saveEvents)
 
-	err := r.Run(":8099")
+	err := r.Run(":3000")
 	if err != nil {
-		panic("Not could run in 8090 port" + err.Error())
+		panic("Not could run in 3000 port" + err.Error())
 	}
 }
 
