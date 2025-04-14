@@ -1,3 +1,3 @@
-module example.com/first-app
+module first-app
 
-go 1.22.4
+go 1.24.2

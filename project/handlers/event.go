@@ -1,8 +1,8 @@
 package handlers
 
 import (
-	"example.com/project/db"
-	"example.com/project/models"
+	"first-app/db"
+	"first-app/models"
 )
 
 func SaveEvent(e models.Event) {

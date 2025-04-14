@@ -2,9 +2,10 @@ package db
 
 import (
 	"database/sql"
-	"example.com/project/models"
-	_ "github.com/mattn/go-sqlite3"
+	"first-app/models"
 	"time"
+
+	_ "github.com/mattn/go-sqlite3"
 )
 
 var DB *sql.DB

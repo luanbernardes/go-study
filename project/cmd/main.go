@@ -1,11 +1,13 @@
 package main
 
 import (
-	"example.com/project/db"
-	"example.com/project/handlers"
-	"example.com/project/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
+
+	"first-app/db"
+	"first-app/handlers"
+	"first-app/models"
+
+	"github.com/gin-gonic/gin"
 )
 
 func main() {
