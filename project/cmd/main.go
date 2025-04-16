@@ -1,44 +1,32 @@
 package main
 
 import (
-	"net/http"
-
+	"first-app/config"
 	"first-app/db"
-	"first-app/handlers"
-	"first-app/models"
+	"first-app/domain/events"
+	"log"
 
-	"github.com/gin-gonic/gin"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
 	db.InitDB()
 
-	r := gin.Default()
+	app := fiber.New()
+	app.Use(cors.New())
 
-	r.GET("/events", getEvents)
-	r.POST("/events", saveEvents)
+	eventsRepository := events.NewRepository(db.DB.Db)
+	eventsService := events.NewService(events.ServiceParams{
+		Repo: eventsRepository,
+	})
 
-	err := r.Run(":3000")
-	if err != nil {
-		panic("Not could run in 3000 port" + err.Error())
-	}
-}
+	events.NewHttpHandler(app, eventsService)
 
-func getEvents(c *gin.Context) {
-	events := handlers.GetAllEvents()
-	c.JSON(200, events)
-}
+	app.Use(func(c *fiber.Ctx) error {
+		return fiber.ErrNotFound
+	})
 
-func saveEvents(c *gin.Context) {
-	var event models.Event
-	err := c.BindJSON(&event)
+	log.Fatal(app.Listen(config.GetEnv("APP_PORT")))
 
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": err})
-		return
-	}
-
-	handlers.SaveEvent(event)
-
-	c.JSON(http.StatusCreated, gin.H{"message": "Event created"})
 }

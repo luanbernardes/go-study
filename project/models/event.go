@@ -5,10 +5,10 @@ import (
 )
 
 type Event struct {
-	ID          int64
-	Name        string    `binding:"required"`
-	Description string    `binding:"required"`
-	Location    string    `binding:"required"`
-	DateTime    time.Time `binding:"required"`
-	UserId      int
+	ID          int64     `gorm:"primarykey" json:"id"`
+	Name        string    `json:"name"`
+	Description string    `json:"description"`
+	Location    string    `json:"location"`
+	DateTime    time.Time `json:"dateTime"`
+	UserId      int       `json:"userId"`
 }

@@ -12,6 +12,8 @@ go study udemy (Maximilian)
 
 3) final project:
  ![Screenshot from 2024-09-30 14-14-08](https://github.com/user-attachments/assets/851a83dc-95fa-43b6-ae13-4820512f1f1e)
+- Local: `air --build.cmd "go build -o bin/api cmd/main.go" --build.bin "./bin/api"`
+
 
 ### Anotations
 #### Documentation
