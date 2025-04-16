@@ -1,5 +1,12 @@
 # go-study
 go study udemy (Maximilian)
+3) project:
+4) ### Run
+- Make and Docker: `make build-project` `make run-project`.
+- Run Locally: `make run`
+- Future:
+   ![Screenshot from 2024-09-30 14-14-08](https://github.com/user-attachments/assets/851a83dc-95fa-43b6-ae13-4820512f1f1e)
+
 
 1) profit_calculator
 - First steps with Go simple interactive console
@@ -9,10 +16,6 @@ go study udemy (Maximilian)
 - This is a simple bank application with a few features
 - persist data in a txt file
 - to run : `cd bank && go run .`
-
-3) final project:
- ![Screenshot from 2024-09-30 14-14-08](https://github.com/user-attachments/assets/851a83dc-95fa-43b6-ae13-4820512f1f1e)
-- Local: `air --build.cmd "go build -o bin/api cmd/main.go" --build.bin "./bin/api"`
 
 
 ### Anotations
