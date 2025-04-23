@@ -3,7 +3,9 @@ go study udemy (Maximilian)
 3) project:
 4) ### Run
 - Make and Docker: `make build-project` `make run-project`.
-- Run Locally: `make run`
+- Run Locally: 
+  - Install dependencies needs to run: `make build`
+  - Run: `make run`
 - Future:
    ![Screenshot from 2024-09-30 14-14-08](https://github.com/user-attachments/assets/851a83dc-95fa-43b6-ae13-4820512f1f1e)
 
